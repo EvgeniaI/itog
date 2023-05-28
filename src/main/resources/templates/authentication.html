@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BestPlastic</title>
+    <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+<div class="card border-primary mt-4 mx-auto h-75 w-75" >
+
+    <div class="card-body">
+
+        <h3 class="card-title text-center">Магазин BestPlastic</h3>
+        <p class="card-text text-center">Рады приветствовать Вас в нашем магазине! Войдите в личный кабинет, если Вы уже являетесь нашим клиентом или зарегистрируйтесь, чтобы совершить покупки впервые, или ознакомьтесь с нашими товарами в качестве гостя.</p>
+        <h5>Вход</h5>
+        <form method="post" action="/process_login">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <label for="username">Введите логин:</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Введите логин" name="username" id="username">
+            <br>
+            <label for="password">Введите пароль:</label>
+            <input type="password" class="form-control form-control-sm" placeholder="Введите пароль" name="password" id="password"> <br>
+            <input type="submit" class="btn btn-primary btn-sm" value="Войти"><br>
+        </form>
+        <div th:if="${param.error}" style="color: red">
+            Неправильный логин или пароль
+        </div>
+        <div class="d-grid gap-2 d-md-block text-center">
+            <a href="/registration" class="btn btn-primary">Регистрация</a>
+            <a href="/product" class="btn btn-primary">Просмотр товаров</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
