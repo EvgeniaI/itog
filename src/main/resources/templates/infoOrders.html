@@ -3,35 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Заказы пользователей</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar sticky-top bg-primary">
+  <div class="container-fluid">
+    <h5 class="text-white m-1">Заказы пользователей</h5>
+    <a class="btn btn-light m-1" href="../admin">Назад</a>
+  </div>
+</nav>
 <form th:method="POST" th:action="@{/infoOrders/search}">
-  <fieldset>
-    <legend>Поиск</legend>
+  <fieldset class="m-2">
     <label for="search">Поиск по номеру заказа:</label>
-    <input type="text" id="search" name="search" placeholder="Введите последние 4 буквы/цифры номера заказа" th:value="*{value_search}">
+    <input class="form-control" type="text" id="search" name="search" placeholder="Введите последние 4 буквы/цифры номера заказа" th:value="*{value_search}">
     <br>
-    <input type="submit" value="Найти">
+    <input class="btn btn-primary m-1" type="submit" value="Найти">
   </fieldset>
 </form>
-<hr>
-<h3>Результат поиска:</h3>
-<div th:each="order : ${search_order}">
+
+<h5 class="text-primary m-2">Результат поиска:</h5>
+<div class="border-bottom border-primary m-1" th:each="order : ${search_order}">
   <h2 th:text="'Заказ № ' + ${order.getNumber()}"></h2>
   <p th:text="'Заказчик: ' + ${order.getPerson().getLogin()}"></p>
   <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
   <p th:text="'Статус: ' + ${order.getStatus()}"></p>
 </div>
-<hr>
-<h3>Заказы пользователей:</h3>
-<div th:each="order : ${orders}">
+
+<h5 class="text-primary m-2">Заказы пользователей:</h5>
+<div class="border-bottom border-primary m-1" th:each="order : ${orders}">
   <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
   <p th:text="'Заказчик: ' + ${order.getPerson().getLogin()}"></p>
   <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
   <p th:text="'Статус: ' + ${order.getStatus()}"></p>
-  <a th:href="@{/editOrder/{id}(id=${order.getId()})}">Изменить статус заказа</a>
-  <a th:href="@{/editOrder/delete/{id}(id=${order.getId()})}">Удалить заказ</a>
-  <hr>
+  <a class="btn btn-outline-primary m-1 btn-sm" th:href="@{/editOrder/{id}(id=${order.getId()})}">Изменить статус заказа</a>
+  <a class="btn btn-outline-primary m-1 btn-sm" th:href="@{/editOrder/delete/{id}(id=${order.getId()})}">Удалить заказ</a>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 </html>

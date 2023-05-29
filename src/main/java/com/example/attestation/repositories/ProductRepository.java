@@ -14,7 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByTitleContainingIgnoreCase(String name);
 
     //поиск по наименованию и фильтрация по диапазону цены
-    @Query(value = "select * from product where (lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1') and (price >= ?2 and price <= ?3)", nativeQuery = true)
+    @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)", nativeQuery = true)
     List<Product> findByTitleAndPriceGreaterThanEqualAAndPriceLessThanEqual(String title, float ot, float Do);
 
     //поиск по наименованию и фильтрация по диапазону и возрастанию цены

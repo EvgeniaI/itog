@@ -76,7 +76,7 @@ public class MainController {
         return "redirect:/person_acc";
     }
 
-    @GetMapping("/person_acc/product/info/{id}")
+    @GetMapping("/user/infoProduct/{id}")
     public String infoProduct(@PathVariable("id") int id, Model model){
         model.addAttribute("product", productService.getProductId(id));
         return "/user/infoProduct";
